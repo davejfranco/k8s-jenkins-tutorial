@@ -72,28 +72,16 @@ helm install jenkins jenkins/jenkins -n jenkins -f jenkins-values.yaml
 ```
 
 ### Accesing Jenkins
-You can access Jenkins by port forwarding the jenkins service
+Get ingress elb dns name
 
 ```sh
-kubectl port-forward svc/jenkins 8080:8080
+kubectl get svc -n ingress-nginx
 ```
->http://localhost:8080/jenkins
+You will be able to access Jenkins in the browser, for example:
 
-or you can create a minikube tunnel and access through the nginx ingress, you'll need sudo
-```sh
-➜  ~ minikube tunnel
-✅  Tunnel successfully started
+>https://a52d9768bea6945eaaac18d0629319e6-70290933fced4aa7.elb.us-east-1.amazonaws.com/jenkins
 
-📌  NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
-
-❗  The service/ingress jenkins requires privileged ports to be exposed: [80 443]
-🔑  sudo permission will be asked for it.
-🏃  Starting tunnel for service jenkins.
-[sudo] password for dave:
-```
->http://localhost/jenkins
-
-Once in the login page, get the admin password with the following command
+And once in the login page, get the admin password with the following command
 ![login](img/login.PNG)
 ```sh
 kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
