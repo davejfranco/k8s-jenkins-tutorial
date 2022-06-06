@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: EKStutorial
+  region: us-east-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.small
+    desiredCapacity: 1
+    volumeSize: 80
+    ssh:
+      allow: false # will use ~/.ssh/id_rsa.pub as the default ssh key
