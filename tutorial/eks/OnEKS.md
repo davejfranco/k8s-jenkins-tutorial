@@ -47,8 +47,19 @@ helm show values jenkins/jenkins > values.yaml
 
 Login to AWS ECR registry. Make sure you get the same region of your eks cluster and your account id number
 
+We are going to need our aws account id number.
+
 ```sh
-aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
+aws_account_id=$(aws sts get-caller-identity --query "Account" --output text)
+```
+and region.
+
+```sh
+aws_region=<region> #select your region, I'm using us-east-1 most of the time
+```
+
+```sh
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin $aws_account_id.dkr.ecr.<region>.amazonaws.com
 ```
 
 Lets create our Jenkins repository.
