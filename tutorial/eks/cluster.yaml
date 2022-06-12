@@ -12,3 +12,4 @@ nodeGroups:
     volumeSize: 80
     ssh:
       allow: false # will use ~/.ssh/id_rsa.pub as the default ssh key
+availabilityZones: ['us-east-1a', 'us-east-1b', 'us-east-1c']
