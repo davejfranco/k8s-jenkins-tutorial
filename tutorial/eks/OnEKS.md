@@ -93,7 +93,7 @@ You will be able to access Jenkins in the browser, for example:
 >https://a52d9768bea6945eaaac18d0629319e6-70290933fced4aa7.elb.us-east-1.amazonaws.com/jenkins
 
 And once in the login page, get the admin password with the following command
-![login](img/login.PNG)
+![login](../../img/login.PNG)
 ```sh
 kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
 ```
