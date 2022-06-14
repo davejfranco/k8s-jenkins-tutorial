@@ -18,8 +18,8 @@ renderHelmLabels: true
 controller:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-controller"
-  image: davejfranco/jenkins #"jenkins/jenkins"
-  tag: "latest"
+  image: jenkins/jenkins #davejfranco/jenkins #"jenkins/jenkins"
+  #tag: "latest"
   #tagLabel: latest
   imagePullPolicy: "Always"
   imagePullSecretName: registry
@@ -238,12 +238,17 @@ controller:
   #   port: 9000
 
   # List of plugins to be install during Jenkins controller start
-  #installPlugins:
+  installPlugins:
   #  - kubernetes:3600.v144b_cd192ca_a_
   #  - workflow-aggregator:581.v0c46fa_697ffd
   #  - git:4.11.3
   #  - configuration-as-code:1429.v09b_044a_c93de
-
+  - kubernetes:latest
+  - kubernetes-credentials:latest
+  - workflow-aggregator:latest
+  - workflow-job:latest
+  - credentials-binding:latest
+  - git:latest
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: true
 
@@ -508,7 +513,7 @@ controller:
   prometheus:
     # If enabled, add the prometheus plugin to the list of plugins to install
     # https://plugins.jenkins.io/prometheus
-    enabled: false
+    enabled: true
     # Additional labels to add to the ServiceMonitor object
     serviceMonitorAdditionalLabels: {}
     # Set a custom namespace where to deploy ServiceMonitor resource
