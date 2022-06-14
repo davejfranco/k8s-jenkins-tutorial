@@ -19,7 +19,7 @@ controller:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-controller"
   image: 444106639146.dkr.ecr.us-east-1.amazonaws.com/jenkins 
-  tag: "latest"
+  tag: "custom"
   #tagLabel: latest
   imagePullPolicy: "Always"
   #imagePullSecretName: registry
@@ -68,7 +68,7 @@ controller:
       memory: "256Mi"
     limits:
       cpu: "2000m"
-      memory: "4096Mi"
+      memory: "2048Mi"
   # Overrides the init container default values
   # initContainerResources:
   #   requests:
